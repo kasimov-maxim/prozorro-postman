@@ -1,0 +1,888 @@
+{
+	"info": {
+		"_postman_id": "70b18568-df4f-4e58-a93b-ba7ac451bb62",
+		"name": "Prozzoro RESTful API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4035452"
+	},
+	"item": [
+		{
+			"name": "0 Get all active tenders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/2.5/tenders",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"2.5",
+						"tenders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1 Create tender aboveThreshold.multilot",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"    pm.collectionVariables.set(\"TENDER_TOKEN\", pm.response.json().access.token);",
+							"    pm.collectionVariables.set(\"TENDER_ID\", pm.response.json().data.id);",
+							"    pm.collectionVariables.set(\"TENDER_CONFIG\", pm.response.json().config);",
+							"    pm.collectionVariables.set(\"TENDER_ITEM_ID\", pm.response.json().data.items[0].id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"name": "cache-control",
+						"sortOrder": 2,
+						"infoTitle": "We recommend using this header",
+						"info": "Postman added \"Cache-Control: no-cache\" as a precautionary measure to prevent the server from returning stale response when one makes repeated requests.\n\nYou can remove this header in the app settings or enter a new one with a different value.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to settings",
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"system": true,
+						"type": "text",
+						"id": 0
+					},
+					{
+						"name": "postman-token",
+						"sortOrder": 3,
+						"infoTitle": "We recommend using this header",
+						"info": "The Postman-Token header appends a random UUID to every outgoing request. Postman adds this header for API developers to better debug requests sent and to ensure separate requests appear distinct to the receiving server.\n\nYou can remove this header in the app settings.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to settings",
+						"key": "Postman-Token",
+						"value": "<calculated when request is sent>",
+						"system": true,
+						"type": "text",
+						"id": 1
+					},
+					{
+						"name": "content-type",
+						"sortOrder": 4,
+						"infoTitle": "This header was automatically added",
+						"info": "The Content-Type header is added to help the server identify the media type of the request body that is present in this request.\n\nUse the request body tab to control the value or to remove this header.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to body",
+						"key": "Content-Type",
+						"value": "application/json",
+						"system": true,
+						"type": "text",
+						"id": 2
+					},
+					{
+						"name": "content-length",
+						"sortOrder": 5,
+						"infoTitle": "This header was automatically added",
+						"info": "The Content-Length header was added to indicate to the server the size of the request body that is added to this request. Server uses this value to parse the request body accurately.\n\nYou can remove the header or enter a new one with a different value.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to body",
+						"key": "Content-Length",
+						"value": "<calculated when request is sent>",
+						"system": true,
+						"type": "text",
+						"id": 3
+					},
+					{
+						"name": "host",
+						"sortOrder": 6,
+						"infoTitle": "We recommend using this header",
+						"info": "The Host header is added to identify the domain name for which a request is being sent to the server. This header is implicitly sent by every HTTP client.\n\nYou can remove the header or enter a new one with a different value. It is most likely that without this header, your request will return an HTTP 400 error.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Host",
+						"value": "<calculated when request is sent>",
+						"system": true,
+						"type": "text",
+						"id": 4
+					},
+					{
+						"name": "user-agent",
+						"sortOrder": 7,
+						"infoTitle": "We recommend using this header",
+						"info": "The User-Agent header is added to help the server identify Postman as the HTTP requesting application or client.\n\nIt is recommended that this header be sent, but you can remove the header or enter a new one with a different value.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "User-Agent",
+						"value": "PostmanRuntime/7.32.1",
+						"system": true,
+						"type": "text",
+						"id": 5
+					},
+					{
+						"name": "accept",
+						"sortOrder": 8,
+						"infoTitle": "We recommend using this header",
+						"info": "The \"Accept: */*\" header is added to tell the server that Postman can understand and process all forms of response content types.\n\nIt is recommended that this header be sent, but you can remove the header or enter a new one with a different value.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Accept",
+						"value": "*/*",
+						"system": true,
+						"type": "text",
+						"id": 6
+					},
+					{
+						"name": "accept-encoding",
+						"sortOrder": 9,
+						"infoTitle": "We recommend using this header",
+						"info": "The Accept-Encoding header is added to indicate to the server that Postman HTTP client supports a defined list of content-encoding or compression algorithms as response.\n\nYou can remove the header or enter a new one with a different value. Doing that may not accurately render the response within the app.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br",
+						"system": true,
+						"type": "text",
+						"id": 7
+					},
+					{
+						"name": "connection",
+						"sortOrder": 10,
+						"infoTitle": "We recommend using this header",
+						"info": "Postman added the Connection header to indicate the server to keep the underlying network connection open once the current response is received. This allows Postman to reuse the same connection for faster response times in subsequent requests to the same server.\n\nYou can remove this header or enter a new one with a different value, such as `Connection: Close` to control this behaviour.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Connection",
+						"value": "keep-alive",
+						"system": true,
+						"type": "text",
+						"id": 8
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer broker",
+						"id": 9
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"tenderPeriod\": {\n            \"endDate\": \"2023-11-30T00:00:00+02:00\"\n        },\n        \"title\": \"футляри до державних нагород\",\n        \"minimalStep\": {\n            \"currency\": \"UAH\",\n            \"amount\": 5\n        },\n        \"procurementMethodType\": \"aboveThreshold\",\n        \"value\": {\n            \"currency\": \"UAH\",\n            \"amount\": 500\n        },\n        \"procuringEntity\": {\n            \"kind\": \"special\",\n            \"address\": {\n                \"countryName\": \"Україна\",\n                \"locality\": \"м. Вінниця\",\n                \"postalCode\": \"21027\",\n                \"region\": \"Вінницька область\",\n                \"streetAddress\": \"вул. Стахурського. 22\"\n            },\n            \"contactPoint\": {\n                \"name\": \"Куца Світлана Валентинівна\",\n                \"telephone\": \"+380432465302\",\n                \"url\": \"http://sch10.edu.vn.ua/\"\n            },\n            \"identifier\": {\n                \"id\": \"21725150\",\n                \"legalName\": \"Заклад \\\"Загальноосвітня школа І-ІІІ ступенів № 10 Вінницької міської ради\\\"\",\n                \"scheme\": \"UA-EDR\"\n            },\n            \"name\": \"ЗОСШ #10 м.Вінниці\"\n        },\n        \"items\": [\n            {\n                \"additionalClassifications\": [\n                    {\n                        \"scheme\": \"ДКПП\",\n                        \"id\": \"17.21.1\",\n                        \"description\": \"Послуги шкільних їдалень\"\n                    }\n                ],\n                \"description\": \"Послуги шкільних їдалень\",\n                \"deliveryDate\": {\n                    \"startDate\": \"2023-11-21T00:00:00+02:00\",\n                    \"endDate\": \"2023-12-20T00:00:00+02:00\"\n                },\n                \"deliveryAddress\": {\n                    \"countryName\": \"Україна\",\n                    \"postalCode\": \"79000\",\n                    \"region\": \"м. Київ\",\n                    \"locality\": \"м. Київ\",\n                    \"streetAddress\": \"вул. Банкова 1\"\n                },\n                \"classification\": {\n                    \"description\": \"Послуги з харчування у школах\",\n                    \"id\": \"55523100-3\",\n                    \"scheme\": \"ДК021\"\n                },\n                \"unit\": {\n                    \"code\": \"KGM\",\n                    \"name\": \"папір\",\n                    \"value\": {\n                        \"amount\": 10\n                    }\n                },\n                \"quantity\": 1\n            }\n        ],\n        \"milestones\": [\n            {\n                \"id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n                \"title\": \"signingTheContract\",\n                \"code\": \"prepayment\",\n                \"type\": \"financing\",\n                \"duration\": {\n                    \"days\": 2,\n                    \"type\": \"banking\"\n                },\n                \"sequenceNumber\": 0,\n                \"percentage\": 45.55\n            },\n            {\n                \"title\": \"deliveryOfGoods\",\n                \"code\": \"postpayment\",\n                \"type\": \"financing\",\n                \"duration\": {\n                    \"days\": 900,\n                    \"type\": \"calendar\"\n                },\n                \"sequenceNumber\": 0,\n                \"percentage\": 54.45\n            }\n        ],\n        \"mainProcurementCategory\": \"services\"\n    },\n    \"config\": {\n        \"hasAuction\": true,\n        \"hasAwardingOrder\": true,\n        \"hasValueRestriction\": false,\n        \"valueCurrencyEquality\": true,\n        \"hasPrequalification\": false,\n        \"minBidsNumber\": 1,\n        \"hasPreSelectionAgreement\": false\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/2.5/tenders?opt_pretty=1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"2.5",
+						"tenders"
+					],
+					"query": [
+						{
+							"key": "opt_pretty",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.1 Get created tender",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/api/2.5/tenders/{{TENDER_ID}}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"2.5",
+						"tenders",
+						"{{TENDER_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2 Create tender's lot",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"    pm.collectionVariables.set(\"TENDER_LOT_ID\", pm.response.json().data.id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"name": "cache-control",
+						"sortOrder": 2,
+						"infoTitle": "We recommend using this header",
+						"info": "Postman added \"Cache-Control: no-cache\" as a precautionary measure to prevent the server from returning stale response when one makes repeated requests.\n\nYou can remove this header in the app settings or enter a new one with a different value.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to settings",
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"system": true,
+						"type": "text",
+						"id": 0
+					},
+					{
+						"name": "postman-token",
+						"sortOrder": 3,
+						"infoTitle": "We recommend using this header",
+						"info": "The Postman-Token header appends a random UUID to every outgoing request. Postman adds this header for API developers to better debug requests sent and to ensure separate requests appear distinct to the receiving server.\n\nYou can remove this header in the app settings.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to settings",
+						"key": "Postman-Token",
+						"value": "<calculated when request is sent>",
+						"system": true,
+						"type": "text",
+						"id": 1
+					},
+					{
+						"name": "content-type",
+						"sortOrder": 4,
+						"infoTitle": "This header was automatically added",
+						"info": "The Content-Type header is added to help the server identify the media type of the request body that is present in this request.\n\nUse the request body tab to control the value or to remove this header.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to body",
+						"key": "Content-Type",
+						"value": "application/json",
+						"system": true,
+						"type": "text",
+						"id": 2
+					},
+					{
+						"name": "content-length",
+						"sortOrder": 5,
+						"infoTitle": "This header was automatically added",
+						"info": "The Content-Length header was added to indicate to the server the size of the request body that is added to this request. Server uses this value to parse the request body accurately.\n\nYou can remove the header or enter a new one with a different value.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to body",
+						"key": "Content-Length",
+						"value": "<calculated when request is sent>",
+						"system": true,
+						"type": "text",
+						"id": 3
+					},
+					{
+						"name": "host",
+						"sortOrder": 6,
+						"infoTitle": "We recommend using this header",
+						"info": "The Host header is added to identify the domain name for which a request is being sent to the server. This header is implicitly sent by every HTTP client.\n\nYou can remove the header or enter a new one with a different value. It is most likely that without this header, your request will return an HTTP 400 error.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Host",
+						"value": "<calculated when request is sent>",
+						"system": true,
+						"type": "text",
+						"id": 4
+					},
+					{
+						"name": "user-agent",
+						"sortOrder": 7,
+						"infoTitle": "We recommend using this header",
+						"info": "The User-Agent header is added to help the server identify Postman as the HTTP requesting application or client.\n\nIt is recommended that this header be sent, but you can remove the header or enter a new one with a different value.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "User-Agent",
+						"value": "PostmanRuntime/7.32.1",
+						"system": true,
+						"type": "text",
+						"id": 5
+					},
+					{
+						"name": "accept",
+						"sortOrder": 8,
+						"infoTitle": "We recommend using this header",
+						"info": "The \"Accept: */*\" header is added to tell the server that Postman can understand and process all forms of response content types.\n\nIt is recommended that this header be sent, but you can remove the header or enter a new one with a different value.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Accept",
+						"value": "*/*",
+						"system": true,
+						"type": "text",
+						"id": 6
+					},
+					{
+						"name": "accept-encoding",
+						"sortOrder": 9,
+						"infoTitle": "We recommend using this header",
+						"info": "The Accept-Encoding header is added to indicate to the server that Postman HTTP client supports a defined list of content-encoding or compression algorithms as response.\n\nYou can remove the header or enter a new one with a different value. Doing that may not accurately render the response within the app.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br",
+						"system": true,
+						"type": "text",
+						"id": 7
+					},
+					{
+						"name": "connection",
+						"sortOrder": 10,
+						"infoTitle": "We recommend using this header",
+						"info": "Postman added the Connection header to indicate the server to keep the underlying network connection open once the current response is received. This allows Postman to reuse the same connection for faster response times in subsequent requests to the same server.\n\nYou can remove this header or enter a new one with a different value, such as `Connection: Close` to control this behaviour.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Connection",
+						"value": "keep-alive",
+						"system": true,
+						"type": "text",
+						"id": 8
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer broker",
+						"id": 9
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"title\": \"Лот №1\",\n        \"description\": \"Опис Лот №1\",\n        \"value\": {\n            \"currency\": \"UAH\",\n            \"amount\": 500\n        },\n        \"minimalStep\": {\n            \"currency\": \"UAH\",\n            \"amount\": 5\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/2.5/tenders/{{TENDER_ID}}/lots?acc_token={{TENDER_TOKEN}}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"2.5",
+						"tenders",
+						"{{TENDER_ID}}",
+						"lots"
+					],
+					"query": [
+						{
+							"key": "acc_token",
+							"value": "{{TENDER_TOKEN}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 Assign lot to tender's item",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"name": "cache-control",
+						"sortOrder": 2,
+						"infoTitle": "We recommend using this header",
+						"info": "Postman added \"Cache-Control: no-cache\" as a precautionary measure to prevent the server from returning stale response when one makes repeated requests.\n\nYou can remove this header in the app settings or enter a new one with a different value.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to settings",
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"system": true,
+						"type": "text",
+						"id": 0
+					},
+					{
+						"name": "postman-token",
+						"sortOrder": 3,
+						"infoTitle": "We recommend using this header",
+						"info": "The Postman-Token header appends a random UUID to every outgoing request. Postman adds this header for API developers to better debug requests sent and to ensure separate requests appear distinct to the receiving server.\n\nYou can remove this header in the app settings.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to settings",
+						"key": "Postman-Token",
+						"value": "<calculated when request is sent>",
+						"system": true,
+						"type": "text",
+						"id": 1
+					},
+					{
+						"name": "content-type",
+						"sortOrder": 4,
+						"infoTitle": "This header was automatically added",
+						"info": "The Content-Type header is added to help the server identify the media type of the request body that is present in this request.\n\nUse the request body tab to control the value or to remove this header.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to body",
+						"key": "Content-Type",
+						"value": "application/json",
+						"system": true,
+						"type": "text",
+						"id": 2
+					},
+					{
+						"name": "content-length",
+						"sortOrder": 5,
+						"infoTitle": "This header was automatically added",
+						"info": "The Content-Length header was added to indicate to the server the size of the request body that is added to this request. Server uses this value to parse the request body accurately.\n\nYou can remove the header or enter a new one with a different value.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to body",
+						"key": "Content-Length",
+						"value": "<calculated when request is sent>",
+						"system": true,
+						"type": "text",
+						"id": 3
+					},
+					{
+						"name": "host",
+						"sortOrder": 6,
+						"infoTitle": "We recommend using this header",
+						"info": "The Host header is added to identify the domain name for which a request is being sent to the server. This header is implicitly sent by every HTTP client.\n\nYou can remove the header or enter a new one with a different value. It is most likely that without this header, your request will return an HTTP 400 error.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Host",
+						"value": "<calculated when request is sent>",
+						"system": true,
+						"type": "text",
+						"id": 4
+					},
+					{
+						"name": "user-agent",
+						"sortOrder": 7,
+						"infoTitle": "We recommend using this header",
+						"info": "The User-Agent header is added to help the server identify Postman as the HTTP requesting application or client.\n\nIt is recommended that this header be sent, but you can remove the header or enter a new one with a different value.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "User-Agent",
+						"value": "PostmanRuntime/7.32.1",
+						"system": true,
+						"type": "text",
+						"id": 5
+					},
+					{
+						"name": "accept",
+						"sortOrder": 8,
+						"infoTitle": "We recommend using this header",
+						"info": "The \"Accept: */*\" header is added to tell the server that Postman can understand and process all forms of response content types.\n\nIt is recommended that this header be sent, but you can remove the header or enter a new one with a different value.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Accept",
+						"value": "*/*",
+						"system": true,
+						"type": "text",
+						"id": 6
+					},
+					{
+						"name": "accept-encoding",
+						"sortOrder": 9,
+						"infoTitle": "We recommend using this header",
+						"info": "The Accept-Encoding header is added to indicate to the server that Postman HTTP client supports a defined list of content-encoding or compression algorithms as response.\n\nYou can remove the header or enter a new one with a different value. Doing that may not accurately render the response within the app.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br",
+						"system": true,
+						"type": "text",
+						"id": 7
+					},
+					{
+						"name": "connection",
+						"sortOrder": 10,
+						"infoTitle": "We recommend using this header",
+						"info": "Postman added the Connection header to indicate the server to keep the underlying network connection open once the current response is received. This allows Postman to reuse the same connection for faster response times in subsequent requests to the same server.\n\nYou can remove this header or enter a new one with a different value, such as `Connection: Close` to control this behaviour.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Connection",
+						"value": "keep-alive",
+						"system": true,
+						"type": "text",
+						"id": 8
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer broker",
+						"id": 9
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": {{TENDER_ITEM_ID}},\n                \"relatedLot\": {{TENDER_LOT_ID}}\n            }\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/2.5/tenders/{{TENDER_ID}}?acc_token={{TENDER_TOKEN}}?opt_pretty=1",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"2.5",
+						"tenders",
+						"{{TENDER_ID}}"
+					],
+					"query": [
+						{
+							"key": "acc_token",
+							"value": "{{TENDER_TOKEN}}?opt_pretty=1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4 Apend exceptional criteria",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"name": "cookie",
+						"sortOrder": 1,
+						"infoTitle": "This header was automatically added",
+						"info": "The Cookie header is added to send the cookies that are associated with this endpoint.\n\nUse the cookie manager to remove the header or to change the value.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to cookies",
+						"key": "Cookie",
+						"value": "SESSION=eyJvcGVyYXRpb25fdGltZSI6IHsiJHRpbWVzdGFtcCI6IHsidCI6IDE3MDAyNDQxMjUsICJpIjogMX19LCAiY2x1c3Rlcl90aW1lIjogeyJjbHVzdGVyVGltZSI6IHsiJHRpbWVzdGFtcCI6IHsidCI6IDE3MDAyNDQxMjUsICJpIjogMX19LCAic2lnbmF0dXJlIjogeyJoYXNoIjogeyIkYmluYXJ5IjogIjhYM1hKaFliOGpwSnc1MzhFeEU3YnRaRmNJZz0iLCAiJHR5cGUiOiAiMDAifSwgImtleUlkIjogNzMwMjQ3OTYxOTE2NzM1NDg4Nn19fQ==; SERVER_ID=883647e8f2f82a6a33984096034625bacff17876a0819f5f865ae90063da0c15b11c4a14e63b5765f6819bf7da4c8206f3e8ea141e697b8a057293d6014b01d5",
+						"system": true,
+						"type": "text",
+						"id": 0
+					},
+					{
+						"name": "cache-control",
+						"sortOrder": 2,
+						"infoTitle": "We recommend using this header",
+						"info": "Postman added \"Cache-Control: no-cache\" as a precautionary measure to prevent the server from returning stale response when one makes repeated requests.\n\nYou can remove this header in the app settings or enter a new one with a different value.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to settings",
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"system": true,
+						"type": "text",
+						"id": 1
+					},
+					{
+						"name": "postman-token",
+						"sortOrder": 3,
+						"infoTitle": "We recommend using this header",
+						"info": "The Postman-Token header appends a random UUID to every outgoing request. Postman adds this header for API developers to better debug requests sent and to ensure separate requests appear distinct to the receiving server.\n\nYou can remove this header in the app settings.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to settings",
+						"key": "Postman-Token",
+						"value": "<calculated when request is sent>",
+						"system": true,
+						"type": "text",
+						"id": 2
+					},
+					{
+						"name": "content-type",
+						"sortOrder": 4,
+						"infoTitle": "This header was automatically added",
+						"info": "The Content-Type header is added to help the server identify the media type of the request body that is present in this request.\n\nUse the request body tab to control the value or to remove this header.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to body",
+						"key": "Content-Type",
+						"value": "application/json",
+						"system": true,
+						"type": "text",
+						"id": 3
+					},
+					{
+						"name": "content-length",
+						"sortOrder": 5,
+						"infoTitle": "This header was automatically added",
+						"info": "The Content-Length header was added to indicate to the server the size of the request body that is added to this request. Server uses this value to parse the request body accurately.\n\nYou can remove the header or enter a new one with a different value.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to body",
+						"key": "Content-Length",
+						"value": "<calculated when request is sent>",
+						"system": true,
+						"type": "text",
+						"id": 4
+					},
+					{
+						"name": "host",
+						"sortOrder": 6,
+						"infoTitle": "We recommend using this header",
+						"info": "The Host header is added to identify the domain name for which a request is being sent to the server. This header is implicitly sent by every HTTP client.\n\nYou can remove the header or enter a new one with a different value. It is most likely that without this header, your request will return an HTTP 400 error.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Host",
+						"value": "<calculated when request is sent>",
+						"system": true,
+						"type": "text",
+						"id": 5
+					},
+					{
+						"name": "user-agent",
+						"sortOrder": 7,
+						"infoTitle": "We recommend using this header",
+						"info": "The User-Agent header is added to help the server identify Postman as the HTTP requesting application or client.\n\nIt is recommended that this header be sent, but you can remove the header or enter a new one with a different value.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "User-Agent",
+						"value": "PostmanRuntime/7.32.1",
+						"system": true,
+						"type": "text",
+						"id": 6
+					},
+					{
+						"name": "accept",
+						"sortOrder": 8,
+						"infoTitle": "We recommend using this header",
+						"info": "The \"Accept: */*\" header is added to tell the server that Postman can understand and process all forms of response content types.\n\nIt is recommended that this header be sent, but you can remove the header or enter a new one with a different value.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Accept",
+						"value": "*/*",
+						"system": true,
+						"type": "text",
+						"id": 7
+					},
+					{
+						"name": "accept-encoding",
+						"sortOrder": 9,
+						"infoTitle": "We recommend using this header",
+						"info": "The Accept-Encoding header is added to indicate to the server that Postman HTTP client supports a defined list of content-encoding or compression algorithms as response.\n\nYou can remove the header or enter a new one with a different value. Doing that may not accurately render the response within the app.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br",
+						"system": true,
+						"type": "text",
+						"id": 8
+					},
+					{
+						"name": "connection",
+						"sortOrder": 10,
+						"infoTitle": "We recommend using this header",
+						"info": "Postman added the Connection header to indicate the server to keep the underlying network connection open once the current response is received. This allows Postman to reuse the same connection for faster response times in subsequent requests to the same server.\n\nYou can remove this header or enter a new one with a different value, such as `Connection: Close` to control this behaviour.",
+						"allowedToToggle": true,
+						"disableEdit": true,
+						"key": "Connection",
+						"value": "keep-alive",
+						"system": true,
+						"type": "text",
+						"id": 9
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer broker",
+						"id": 10
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": [\n        {\n            \"title\": \"Вчинення злочинів, учинених з корисливих мотивів\",\n            \"description\": \"Службова (посадова) особа учасника процедури закупівлі, яка підписала тендерну пропозицію (або уповноважена на підписання договору в разі переговорної процедури закупівлі) або фізична особа, яка є учасником процедури закупівлі, не була засуджена за злочин, учинений з корисливих мотивів (зокрема, пов'язаний з хабарництвом та відмиванням коштів), судимість з якої знято або погашено у встановленому законом порядку\",\n            \"source\": \"tenderer\",\n            \"classification\": {\n                \"scheme\": \" espd211\",\n                \"id\": \"CRITERION.EXCLUSION.CONVICTIONS.PARTICIPATION_IN_CRIMINAL_ORGANISATION\"\n            },\n            \"relatesTo\": \"tenderer\",\n            \"legislation\": [\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"17.1.5\"\n                },\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"17.1.6\"\n                }\n            ],\n            \"requirementGroups\": [\n                {\n                    \"description\": \"Учасник фізична особа підтверджує, що\",\n                    \"requirements\": [\n                        {\n                            \"title\": \"Фізична особа, яка є учасником процедури закупівлі, не була засуджена за злочин, учинений з корисливих мотивів (зокрема, пов'язаний з хабарництвом та відмиванням коштів), судимість з якої знято або погашено у встановленому законом порядку\",\n                            \"dataType\": \"boolean\",\n                            \"expectedValue\": \"true\",\n                            \"eligibleEvidences\": [\n                                {\n                                    \"title\": \"Документальне підтвердження\",\n                                    \"description\": \"Довідка в довільній формі\",\n                                    \"type\": \"document\"\n                                }\n                            ]\n                        }\n                    ]\n                },\n                {\n                    \"description\": \"Учасник юридична особа підтверджує, що\",\n                    \"requirements\": [\n                        {\n                            \"title\": \"Службова (посадова) особа учасника процедури закупівлі, яка підписала тендерну пропозицію (або уповноважена на підписання договору в разі переговорної процедури закупівлі), не була засуджена за злочин, вчинений з корисливих мотивів (зокрема, пов'язаний з хабарництвом, шахрайством та відмиванням коштів), судимість з якої  знято або погашено у встановленому законом порядку\",\n                            \"dataType\": \"boolean\",\n                            \"expectedValue\": \"true\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"title\": \"Вчинення економічних правопорушень\",\n            \"description\": \"Суб'єкт господарювання (учасник) протягом останніх трьох років не притягувався до відповідальності за порушення, передбачене пунктом 4 частини другої статті 6, пунктом 1 статті 50 Закону України \\\"Про захист економічної конкуренції\\\", у вигляді вчинення антиконкурентних узгоджених дій, що стосуються спотворення результатів тендерів\",\n            \"source\": \"tenderer\",\n            \"classification\": {\n                \"scheme\": \" espd211\",\n                \"id\": \"CRITERION.EXCLUSION.CONVICTIONS.FRAUD\"\n            },\n            \"relatesTo\": \"tenderer\",\n            \"legislation\": [\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"17.1.4\"\n                },\n                {\n                    \"version\": \"2020-02-13\",\n                    \"identifier\": {\n                        \"id\": \"2210-III\",\n                        \"legalName\": \"Закон України \\\"Про захист економічної конкуренції\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/2210-14\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"6.2.4\"\n                },\n                {\n                    \"version\": \"2020-02-13\",\n                    \"identifier\": {\n                        \"id\": \"2210-III\",\n                        \"legalName\": \"Закон України \\\"Про захист економічної конкуренції\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/2210-14\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"50.1\"\n                }\n            ],\n            \"requirementGroups\": [\n                {\n                    \"description\": \"Учасник підтверджує, що\",\n                    \"requirements\": [\n                        {\n                            \"title\": \"Суб'єкт господарювання (учасник) протягом останніх трьох років не притягувався до відповідальності за порушення, передбачене пунктом 4 частини другої статті 6, пунктом 1 статті 50 Закону України \\\"Про захист економічної конкуренції\\\", у вигляді вчинення антиконкурентних узгоджених дій, що стосуються спотворення результатів тендерів\",\n                            \"dataType\": \"boolean\",\n                            \"expectedValue\": \"true\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"title\": \"Вчинення корупційних правопорушень\",\n            \"description\": \"Відомості про юридичну особу, яка є учасником процедури закупівлі, не внесено до Єдиного державного реєстру осіб, які вчинили корупційні або пов'язані з корупцією правопорушення. Службову (посадову) особу учасника процедури закупівлі, яку уповноважено учасником представляти його інтереси під час проведення процедури закупівлі, фізичну особу, яка є учасником, не було притягнуто згідно із законом до відповідальності за вчинення корупційного правопорушення або правопорушення, пов'язаного з корупцією\",\n            \"source\": \"tenderer\",\n            \"classification\": {\n                \"scheme\": \" espd211\",\n                \"id\": \"CRITERION.EXCLUSION.CONVICTIONS.CORRUPTION\"\n            },\n            \"relatesTo\": \"tenderer\",\n            \"legislation\": [\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"17.1.2\"\n                },\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"17.1.3\"\n                }\n            ],\n            \"requirementGroups\": [\n                {\n                    \"description\": \"Учасник підтверджує, що\",\n                    \"requirements\": [\n                        {\n                            \"title\": \"Відомості про юридичну особу, яка є учасником процедури закупівлі, не внесено до Єдиного державного реєстру осіб, які вчинили корупційні або пов'язані з корупцією правопорушення\",\n                            \"dataType\": \"boolean\",\n                            \"expectedValue\": \"true\"\n                        },\n                        {\n                            \"title\": \"Службову (посадову) особу учасника процедури закупівлі, яку уповноважено учасником представляти його інтереси під час проведення процедури закупівлі, фізичну особу, яка є учасником, не було притягнуто згідно із законом до відповідальності за вчинення корупційного правопорушення або правопорушення, пов'язаного з корупцією\",\n                            \"dataType\": \"boolean\",\n                            \"expectedValue\": \"true\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"title\": \"Вчинення правопорушень, пов'язаних з використанням дитячої праці чи будь-якими формами торгівлі людьми\",\n            \"description\": \"Службова (посадова) особа учасника процедури закупівлі, яку уповноважено учасником представляти його інтереси під час проведення процедури закупівлі, фізичну особу, яка є учасником, не було притягнуто згідно із законом до відповідальності за вчинення правопорушення, пов'язаного з використанням дитячої праці чи будь-якими формами торгівлі людьми\",\n            \"source\": \"tenderer\",\n            \"classification\": {\n                \"scheme\": \" espd211\",\n                \"id\": \"CRITERION.EXCLUSION.CONVICTIONS.CHILD_LABOUR-HUMAN_TRAFFICKING\"\n            },\n            \"relatesTo\": \"tenderer\",\n            \"legislation\": [\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"17.1.12\"\n                }\n            ],\n            \"requirementGroups\": [\n                {\n                    \"description\": \"Учасник підтверджує, що\",\n                    \"requirements\": [\n                        {\n                            \"title\": \"Службова (посадова) особа учасника процедури закупівлі, яку уповноважено учасником представляти його інтереси під час проведення процедури закупівлі, фізичну особу, яка є учасником, не було притягнуто згідно із законом до відповідальності за вчинення правопорушення, пов'язаного з використанням дитячої праці чи будь-якими формами торгівлі людьми\",\n                            \"dataType\": \"boolean\",\n                            \"expectedValue\": \"true\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"title\": \"Порушення справ про банкрутство\",\n            \"description\": \"Учасник процедури закупівлі не визнаний у встановленому законом порядку банкрутом та стосовно нього не відкрита ліквідаційна процедура\",\n            \"source\": \"tenderer\",\n            \"classification\": {\n                \"scheme\": \" espd211\",\n                \"id\": \"CRITERION.EXCLUSION.BUSINESS.BANKRUPTCY\"\n            },\n            \"relatesTo\": \"tenderer\",\n            \"legislation\": [\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"17.1.8\"\n                }\n            ],\n            \"requirementGroups\": [\n                {\n                    \"description\": \"Учасник підтверджує, що\",\n                    \"requirements\": [\n                        {\n                            \"title\": \"Учасник процедури закупівлі не визнаний у встановленому законом порядку банкрутом та стосовно нього не відкрита ліквідаційна процедура\",\n                            \"dataType\": \"boolean\",\n                            \"expectedValue\": \"true\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"title\": \"Виявлення факту зв'язку учасника з іншими учасниками процедури або замовником\",\n            \"description\": \"Тендерна пропозиція подана учасником конкурентної процедури закупівлі або участь у переговорній процедурі бере учасник, який є пов'язаною особою з іншими учасниками процедури закупівлі та/або з уповноваженою особою (особами), та/або з керівником замовника\",\n            \"source\": \"procuringEntity\",\n            \"classification\": {\n                \"scheme\": \" espd211\",\n                \"id\": \"CRITERION.EXCLUSION.MISCONDUCT.MARKET_DISTORTION\"\n            },\n            \"relatesTo\": \"tenderer\",\n            \"legislation\": [\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"17.1.7\"\n                }\n            ],\n            \"requirementGroups\": [\n                {\n                    \"description\": \"Замовник підтверджує, що\",\n                    \"requirements\": [\n                        {\n                            \"title\": \"Тендерна пропозиція подана учасником конкурентної процедури закупівлі або участь у переговорній процедурі бере учасник, який є пов'язаною особою з іншими учасниками процедури закупівлі та/або з уповноваженою особою (особами), та/або з керівником замовника\",\n                            \"dataType\": \"boolean\",\n                            \"eligibleEvidences\": [\n                                {\n                                    \"title\": \"Документальне підтвердження\",\n                                    \"description\": \"Довідка в довільній формі\",\n                                    \"type\": \"document\"\n                                }\n                            ]\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"title\": \"Виявлення факту наміру впливу на прийняття рішення замовника\",\n            \"description\": \"Замовник має незаперечні докази того, що учасник процедури закупівлі пропонує, дає або погоджується дати прямо чи опосередковано будь-якій службовій (посадовій) особі замовника, іншого державного органу винагороду в будь-якій формі (пропозиція щодо найму на роботу, цінна річ, послуга тощо) з метою вплинути на прийняття рішення щодо визначення переможця процедури закупівлі або застосування замовником певної процедури закупівлі\",\n            \"source\": \"procuringEntity\",\n            \"classification\": {\n                \"scheme\": \" espd211\",\n                \"id\": \"CRITERION.EXCLUSION.CONFLICT_OF_INTEREST.MISINTERPRETATION\"\n            },\n            \"relatesTo\": \"tenderer\",\n            \"legislation\": [\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"17.1.1\"\n                }\n            ],\n            \"requirementGroups\": [\n                {\n                    \"description\": \"Замовник підтверджує, що\",\n                    \"requirements\": [\n                        {\n                            \"title\": \"Замовник має незаперечні докази того, що учасник процедури закупівлі пропонує, дає або погоджується дати прямо чи опосередковано будь-якій службовій (посадовій) особі замовника, іншого державного органу винагороду в будь-якій формі (пропозиція щодо найму на роботу, цінна річ, послуга тощо) з метою вплинути на прийняття рішення щодо визначення переможця процедури закупівлі або застосування замовником певної процедури закупівлі\",\n                            \"dataType\": \"boolean\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"title\": \"Наявність інших підстав для відмови в участі у процедурі закупівлі\",\n            \"description\": \"У Єдиному державному реєстрі юридичних осіб, фізичних осіб - підприємців та громадських формувань присутня інформація, передбачена пунктом 9 частини другої статті 9 Закону України \\\"Про державну реєстрацію юридичних осіб, фізичних осіб - підприємців та громадських формувань\\\" (крім нерезидентів)\",\n            \"source\": \"tenderer\",\n            \"classification\": {\n                \"scheme\": \" espd211\",\n                \"id\": \"CRITERION.EXCLUSION.NATIONAL.OTHER\"\n            },\n            \"relatesTo\": \"tenderer\",\n            \"legislation\": [\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"17.1.9\"\n                },\n                {\n                    \"version\": \"2020-03-16\",\n                    \"identifier\": {\n                        \"id\": \"755-IV\",\n                        \"legalName\": \"Закон України \\\"Про державну реєстрацію юридичних осіб, фізичних осіб - підприємців та громадських формувань\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/755-15\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"9.2.9\"\n                },\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"17.1.10\"\n                },\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\",\n                    \"article\": \"17.1.11\"\n                },\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"1644-VII\",\n                        \"legalName\": \"Закон України \\\"Про санкції\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/1644-18\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\"\n                }\n            ],\n            \"requirementGroups\": [\n                {\n                    \"description\": \"Учасник підтверджує, що\",\n                    \"requirements\": [\n                        {\n                            \"title\": \"У Єдиному державному реєстрі юридичних осіб, фізичних осіб - підприємців та громадських формувань присутня інформація, передбачена пунктом 9 частини другої статті 9 Закону України \\\"Про державну реєстрацію юридичних осіб, фізичних осіб - підприємців та громадських формувань\\\" (крім нерезидентів)\",\n                            \"dataType\": \"boolean\",\n                            \"expectedValue\": \"true\"\n                        },\n                        {\n                            \"title\": \"Юридична особа, яка є учасником процедури закупівлі (крім нерезидентів), має антикорупційну програму чи уповноваженого з реалізації антикорупційної програми, якщо вартість закупівлі товару (товарів), послуги (послуг) або робіт дорівнює чи перевищує 20 мільйонів гривень (у тому числі за лотом)\",\n                            \"dataType\": \"boolean\",\n                            \"expectedValue\": \"true\"\n                        },\n                        {\n                            \"title\": \"Учасник процедури закупівлі не є особою, до якої застосовано санкцію у вигляді заборони на здійснення у неї публічних закупівель товарів, робіт і послуг згідно із Законом України \\\"Про санкції\\\"\",\n                            \"dataType\": \"boolean\",\n                            \"expectedValue\": \"true\"\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"title\": \"Мова (мови), якою (якими) повинні готуватися тендерні пропозиції\",\n            \"source\": \"tenderer\",\n            \"classification\": {\n                \"scheme\": \" ESPD211\",\n                \"id\": \"CRITERION.OTHER.BID.LANGUAGE\"\n            },\n            \"relatesTo\": \"tenderer\",\n            \"legislation\": [\n                {\n                    \"version\": \"2020-04-19\",\n                    \"identifier\": {\n                        \"id\": \"922-VIII\",\n                        \"legalName\": \"Закон України \\\"Про публічні закупівлі\\\"\",\n                        \"uri\": \"https://zakon.rada.gov.ua/laws/show/922-19\"\n                    },\n                    \"type\": \"NATIONAL_LEGISLATION\"\n                }\n            ],\n            \"requirementGroups\": [\n                {\n                    \"description\": \"Учасник фізична особа підтверджує, що\",\n                    \"requirements\": [\n                        {\n                            \"title\": \"Мова тендерної пропозиції українська\",\n                            \"dataType\": \"boolean\",\n                            \"expectedValue\": \"true\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/2.5/tenders/{{TENDER_ID}}/criteria?acc_token={{TENDER_TOKEN}}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"2.5",
+						"tenders",
+						"{{TENDER_ID}}",
+						"criteria"
+					],
+					"query": [
+						{
+							"key": "acc_token",
+							"value": "{{TENDER_TOKEN}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5 Activate tender",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer broker"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"status\": \"active.tendering\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/2.5/tenders/{{TENDER_ID}}?acc_token={{TENDER_TOKEN}}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"2.5",
+						"tenders",
+						"{{TENDER_ID}}"
+					],
+					"query": [
+						{
+							"key": "acc_token",
+							"value": "{{TENDER_TOKEN}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6 Update tender",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer broker"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"data\": {\n    \"tenderPeriod\": {\n      \"startDate\": \"2023-11-17T21:41:56.750637+02:00\",\n      \"endDate\": \"2024-02-17T00:00:00+02:00\"\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/api/2.5/tenders/{{TENDER_ID}}?acc_token={{TENDER_TOKEN}}",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"api",
+						"2.5",
+						"tenders",
+						"{{TENDER_ID}}"
+					],
+					"query": [
+						{
+							"key": "acc_token",
+							"value": "{{TENDER_TOKEN}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://lb-api-sandbox.prozorro.gov.ua"
+		},
+		{
+			"key": "TENDER_TOKEN",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "TENDER_ID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "TENDER_ITEM_ID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "TENDER_LOT_ID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "TENDER_CONFIG",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
